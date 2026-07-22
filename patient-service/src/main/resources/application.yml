@@ -4,9 +4,9 @@ server:
 spring:
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/sinapse
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:sinapse}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
 
   jpa:
 
@@ -26,5 +26,5 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: guest
-    password: guest
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
