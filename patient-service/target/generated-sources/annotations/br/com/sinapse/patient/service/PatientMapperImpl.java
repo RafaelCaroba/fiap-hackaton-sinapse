@@ -6,14 +6,15 @@ import br.com.sinapse.patient.domain.Patient;
 import br.com.sinapse.patient.dto.CreatePatientRequest;
 import br.com.sinapse.patient.dto.PatientResponse;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-21T01:56:07-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.9 (Microsoft)"
+    date = "2026-07-21T02:25:13-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 25 (Oracle Corporation)"
 )
 @Component
 public class PatientMapperImpl implements PatientMapper {
@@ -30,6 +31,7 @@ public class PatientMapperImpl implements PatientMapper {
         LocalDate birthDate = null;
         Gender gender = null;
         BloodType bloodType = null;
+        LocalDateTime createdAt = null;
 
         id = patient.getId();
         cpf = patient.getCpf();
@@ -37,8 +39,9 @@ public class PatientMapperImpl implements PatientMapper {
         birthDate = patient.getBirthDate();
         gender = patient.getGender();
         bloodType = patient.getBloodType();
+        createdAt = patient.getCreatedAt();
 
-        PatientResponse patientResponse = new PatientResponse( id, cpf, fullName, birthDate, gender, bloodType );
+        PatientResponse patientResponse = new PatientResponse( id, cpf, fullName, birthDate, gender, bloodType, createdAt );
 
         return patientResponse;
     }

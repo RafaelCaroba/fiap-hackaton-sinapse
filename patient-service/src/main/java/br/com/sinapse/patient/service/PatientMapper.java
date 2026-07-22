@@ -12,5 +12,6 @@ public interface PatientMapper {
     PatientResponse toResponse(Patient patient);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     Patient toEntity(CreatePatientRequest request);
 }
