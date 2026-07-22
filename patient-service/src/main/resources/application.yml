@@ -21,7 +21,7 @@ spring:
 
 
 
-    show-sql: true
+    show-sql: false
 
   rabbitmq:
     host: localhost
