@@ -43,6 +43,9 @@ public class QueueEntry {
     @Column(nullable = false)
     private UUID triageId;
 
+    @Column(nullable = false, length = 11)
+    private String cpf;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private QueuePriority priority;
