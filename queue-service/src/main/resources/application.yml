@@ -23,7 +23,18 @@ spring:
         format_sql: true
 
     show-sql: false
+  
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
 
 logging:
   level:
     br.com.sinapse.queue: INFO
+
+triage-event:
+  exchange: ${TRIAGE_EVENT_EXCHANGE:triage.exchange}
+  routing-key: ${TRIAGE_EVENT_ROUTING_KEY:triage.completed}
+  queue: ${TRIAGE_EVENT_QUEUE:triage.completed.queue}
