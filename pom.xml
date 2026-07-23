@@ -30,7 +30,7 @@
 <!--        <module>gateway</module>-->
         <module>patient-service</module>
         <module>triage-service</module>
-<!--        <module>queue-service</module>-->
+        <module>queue-service</module>
 <!--        <module>history-service</module>-->
     </modules>
 

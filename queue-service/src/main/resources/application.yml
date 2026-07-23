@@ -1,0 +1,29 @@
+server:
+  port: 8083
+
+spring:
+
+  application:
+    name: queue-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:sinapse}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+
+  jpa:
+
+    hibernate:
+      ddl-auto: update
+
+    properties:
+
+      hibernate:
+        default_schema: queue
+        format_sql: true
+
+    show-sql: false
+
+logging:
+  level:
+    br.com.sinapse.queue: INFO
