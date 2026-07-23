@@ -1,6 +1,6 @@
 package br.com.sinapse.triage.service;
 
-import br.com.sinapse.triage.event.TriageCompletedEvent;
+import br.com.sinapse.shared.event.TriageCompletedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
