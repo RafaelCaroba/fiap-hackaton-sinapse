@@ -6,9 +6,9 @@ import br.com.sinapse.triage.dto.request.CreateTriageRequest;
 import br.com.sinapse.triage.dto.response.TriageResponse;
 import br.com.sinapse.triage.entity.Triage;
 import br.com.sinapse.triage.enums.Priority;
-import br.com.sinapse.triage.event.TriageCompletedEvent;
 import br.com.sinapse.triage.mapper.TriageMapper;
 import br.com.sinapse.triage.repository.TriageRepository;
+import br.com.sinapse.shared.event.TriageCompletedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +43,7 @@ public class TriageService {
             savedTriage.getId(),
             savedTriage.getPatientId(),
             savedTriage.getCpf(),
-            savedTriage.getPriority(),
+            savedTriage.getPriority().name(),
             savedTriage.getCreatedAt()
         );
         publishAfterCommit(event);

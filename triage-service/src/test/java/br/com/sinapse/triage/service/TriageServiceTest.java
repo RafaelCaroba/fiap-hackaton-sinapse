@@ -14,11 +14,11 @@ import br.com.sinapse.triage.dto.request.CreateTriageRequest;
 import br.com.sinapse.triage.dto.response.TriageResponse;
 import br.com.sinapse.triage.entity.Triage;
 import br.com.sinapse.triage.enums.Priority;
-import br.com.sinapse.triage.event.TriageCompletedEvent;
 import br.com.sinapse.triage.exception.PatientNotFoundException;
 import br.com.sinapse.triage.exception.PatientServiceUnavailableException;
 import br.com.sinapse.triage.mapper.TriageMapper;
 import br.com.sinapse.triage.repository.TriageRepository;
+import br.com.sinapse.shared.event.TriageCompletedEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -84,7 +84,7 @@ class TriageServiceTest {
             saved.getId(),
             saved.getPatientId(),
             saved.getCpf(),
-            saved.getPriority(),
+            saved.getPriority().name(),
             saved.getCreatedAt()
         ));
     }
