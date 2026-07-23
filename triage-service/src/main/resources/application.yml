@@ -24,6 +24,12 @@ spring:
 
     show-sql: false
 
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
 logging:
   level:
     br.com.sinapse.triage: INFO
@@ -33,3 +39,6 @@ patient-service:
   connect-timeout-ms: 3000
   read-timeout-ms: 5000
 
+triage-event:
+  exchange: ${TRIAGE_EVENT_EXCHANGE:triage.exchange}
+  routing-key: ${TRIAGE_EVENT_ROUTING_KEY:triage.completed}

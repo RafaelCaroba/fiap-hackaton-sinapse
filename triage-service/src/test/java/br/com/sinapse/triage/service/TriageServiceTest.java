@@ -14,6 +14,7 @@ import br.com.sinapse.triage.dto.request.CreateTriageRequest;
 import br.com.sinapse.triage.dto.response.TriageResponse;
 import br.com.sinapse.triage.entity.Triage;
 import br.com.sinapse.triage.enums.Priority;
+import br.com.sinapse.triage.event.TriageCompletedEvent;
 import br.com.sinapse.triage.exception.PatientNotFoundException;
 import br.com.sinapse.triage.exception.PatientServiceUnavailableException;
 import br.com.sinapse.triage.mapper.TriageMapper;
@@ -42,6 +43,9 @@ class TriageServiceTest {
 
     @Mock
     private TriageMapper triageMapper;
+
+    @Mock
+    private TriageEventPublisher triageEventPublisher;
 
     @InjectMocks
     private TriageService triageService;
@@ -76,6 +80,13 @@ class TriageServiceTest {
         verify(triageMapper).toEntity(request);
         verify(triageRepository).saveAndFlush(triage);
         verify(triageMapper).toResponse(saved);
+        verify(triageEventPublisher).publish(new TriageCompletedEvent(
+            saved.getId(),
+            saved.getPatientId(),
+            saved.getCpf(),
+            saved.getPriority(),
+            saved.getCreatedAt()
+        ));
     }
 
     @Test
@@ -89,7 +100,8 @@ class TriageServiceTest {
 
         verify(patientClient).findByCpf(request.cpf());
         verify(priorityEngine, never()).calculate(any());
-        verify(triageRepository, never()).save(any());
+        verify(triageRepository, never()).saveAndFlush(any());
+        verify(triageEventPublisher, never()).publish(any());
     }
 
     @Test
@@ -104,7 +116,8 @@ class TriageServiceTest {
 
         verify(patientClient).findByCpf(request.cpf());
         verify(priorityEngine, never()).calculate(any());
-        verify(triageRepository, never()).save(any());
+        verify(triageRepository, never()).saveAndFlush(any());
+        verify(triageEventPublisher, never()).publish(any());
     }
 
     private CreateTriageRequest request() {
